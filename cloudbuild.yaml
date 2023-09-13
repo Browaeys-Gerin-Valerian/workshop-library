@@ -1,0 +1,20 @@
+steps:
+  - id: install-nest-app
+    name: node:16
+    dir: app
+    entrypoint: npm
+    args: ['ci']
+
+  - id: test-nest-app
+    name: node:16
+    dir: app
+    entrypoint: npm
+    args: ['run', 'test']
+    waitFor: ['install-nest-app']
+
+  - id: build-nest-app
+    name: node:16
+    dir: app
+    entrypoint: npm
+    args: ['run', 'build']
+    waitFor: ['install-nest-app']
